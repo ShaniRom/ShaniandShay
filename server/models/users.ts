@@ -5,12 +5,7 @@ export enum UserTypeSchema {
   STUDENT = "student",
   INSTRUCTOR = "instructor",
 }
-export enum EducationSchema {
-    HIGHSCHOOL = "high school diploma",
-    DEGREE = "instructor",
-    HIGHSCHOOL = "student",
-    DEGREE = "instructor",
-  }
+
 export const MediaSchema = new mongoose.Schema({
     facebook: String,
     twitter: String,
