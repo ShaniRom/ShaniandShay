@@ -40,15 +40,15 @@ export const userSchema = new mongoose.Schema({
   socialmedia:MediaSchema,
   description:String,
   mycourses:[String],
-  coursesioffer:[String],
+  coursesioffer:[String]
 
 
 
 
 });
 
-// const Message = mongoose.model('users', userSchema);
-// export default Message;
+// const User = mongoose.model('users', userSchema);
+// export default User;
 //------------------------------------------------------------------------
 // var userSchema = mongoose.Schema({
 //     username: String,
