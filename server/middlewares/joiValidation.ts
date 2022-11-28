@@ -1,27 +1,27 @@
-const Joi = require("joi");
+// const Joi = require("joi");
 
-export enum UserTypeSchema {
-  STUDENT = "student",
-  INSTRUCTOR = "instructor",
-}
+// export enum UserTypeSchema {
+//   STUDENT = "student",
+//   INSTRUCTOR = "instructor",
+// }
 
-export const MediaSchema = Joi.object({
-  facebook: Joi.string(),
-  twitter: Joi.string(),
-  linkedin: Joi.string(),
-  youtube: Joi.string(),
-  other: Joi.string(),
-});
-export const NameSchema = Joi.object({
-  firstName: Joi.string().required,
-  lastName: Joi.string().required,
-});
+// export const MediaSchema = Joi.object({
+//   facebook: Joi.string(),
+//   twitter: Joi.string(),
+//   linkedin: Joi.string(),
+//   youtube: Joi.string(),
+//   other: Joi.string(),
+// });
+// export const NameSchema = Joi.object({
+//   firstName: Joi.string().required,
+//   lastName: Joi.string().required,
+// });
 
-const UserValidation = {
-  addUserValidation: {
-    body: Joi.object({
-      // name: NameSchema,
-      username: Joi.string().alphanum().min(3).max(30).required(),
+// const UserValidation = {
+//   addUserValidation: {
+//     body: Joi.object({
+//       // name: NameSchema,
+//       username: Joi.string().alphanum().min(3).max(30).required(),
       //  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
       // email: Joi.string().email({
       //   required: true,
@@ -43,7 +43,17 @@ const UserValidation = {
       // description:Joi.string(),
       // mycourses:Joi.array().items(Joi.string(), Joi.number()),
       // coursesioffer:Joi.array().items(Joi.string(), Joi.number())
-    }),
-  },
-};
-export default UserValidation;
+//     }),
+//   },
+// };
+// export default UserValidation;
+module.exports = (validator) => {
+  return (req, res, next) => {
+    const { error } = validator(req.body)
+    console.log('error: ', error)
+    if (error) {
+      return res.status(400).send(error.details[0].message)
+    }
+    next()
+  }
+}

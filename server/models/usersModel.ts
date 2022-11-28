@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+const Joi = require("joi");
 
 export enum UserTypeSchema {
   STUDENT = "student",
@@ -7,12 +7,12 @@ export enum UserTypeSchema {
 }
 
 export const MediaSchema = new mongoose.Schema({
-    facebook: String,
-    twitter: String,
-    linkedin: String,
-    youtube: String,
-    other:String
-  });
+  facebook: String,
+  twitter: String,
+  linkedin: String,
+  youtube: String,
+  other: String,
+});
 export const NameSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -21,12 +21,17 @@ export const NameSchema = new mongoose.Schema({
 export const UserSchema = new mongoose.Schema({
   //  name: NameSchema,
   username: String,
-  //  password: String,
-  // email: {
-  //   type: String,
-  //   // unique: true,
-  //   required: true,
-  // },
+  password: {
+    type: String,
+    required: [true, "Please enter a password"],
+    minlength: 8,
+  },
+  email: {
+    type: String,
+    required: [true, "Please enter a email"],
+    unique: true,
+    lowercase: true,
+  },
   // type: {
   //   type: String,
   //   enum: UserTypeSchema,
@@ -41,36 +46,19 @@ export const UserSchema = new mongoose.Schema({
   // description:String,
   // mycourses:[String],
   // coursesioffer:[String]
-
-
-
-
 });
 
+const User = mongoose.model("users", UserSchema);
 
-const User = mongoose.model('users', UserSchema)
-export default User;
-//------------------------------------------------------------------------
-// var userSchema = mongoose.Schema({
-//     username: String,
-//     password: String,
-//       email: String,
-//       first_name: String,
-//       last_name: String,
-//       created: { type: Date, default: Date.now },
-//   });
-
-//   userSchema.methods.joiValidate = function(obj) {
-//       var Joi = require('joi');
-//       var schema = {
-//           username: Joi.types.String().min(6).max(30).required(),
-//           password: Joi.types.String().min(8).max(30).regex(/[a-zA-Z0-9]{3,30}/).required(),
-//           email: Joi.types.String().email().required(),
-//           first_name: Joi.types.String().required(),
-//           last_name: Joi.types.String().required(),
-//           created: Joi.types.Date(),
-//       }
-//       return Joi.validate(obj, schema);
-//   }
-
-//   module.exports = mongoose.model('User', userSchema);
+const validateUser = (user) => {
+  const schema = Joi.object({
+    username: Joi.string().min(3),
+    email: Joi.string().email().min(5).max(500).required(),
+    password: Joi.string().min(8).max(1024).required(),
+  });
+  return schema.validate(user);
+};
+export {
+  User,
+  validateUser
+};

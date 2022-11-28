@@ -1,4 +1,4 @@
- import User from '../models/usersModel'
+ import {User} from '../models/usersModel'
 
 
  export  const addUser= async (req,res)=>{
