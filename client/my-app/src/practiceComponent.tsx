@@ -23,7 +23,7 @@ const PracticeComponent = () => {
   }
   return (
     <div>
-      <form
+      <form 
         onSubmit={(ev) => {handleRegister(ev)}}>
         <input type="text" placeholder="username" name="username" />
         <input type="password" placeholder="password" name="password"/>
