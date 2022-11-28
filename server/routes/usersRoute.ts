@@ -1,13 +1,13 @@
 import express from 'express';
 const router = express.Router();
+import UserValidation from '../middlewares/joiValidation';
+
+import {addUser} from '../controllers/chatCont'
 
 
-// import {addUser} from '../controllers/chatCont'
+
+router
+.post('/addUser',UserValidation, addUser)
 
 
-
-// router
-// .post('/addUser',addUser)
-
-
-// export default router;
+export default router;

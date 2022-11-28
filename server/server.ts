@@ -9,7 +9,9 @@ app.use(express.json());
 
 mongoose
   .connect(
-    'mongodb+srv://Michael:<password>.14!@cluster0.ctwuo.mongodb.net/bymySelf?retryWrites=true&w=majority'
+    "mongodb+srv://ShaniRom:CakFWbktCxPEqGS3@cluster0.vh1hg.mongodb.net/shudemy?retryWrites=true&w=majority"
+
+    
   )
   .then((result) => {
     console.log("connected to db");
@@ -31,7 +33,6 @@ mongoose
 
 
 
-// const User = mongoose.model('usersDb', UserSchema)
 
 
 

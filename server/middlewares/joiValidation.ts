@@ -51,5 +51,6 @@ body:Joi.object({
   
 
 })
+
 }
-export default UserValidation
+export default UserValidation;

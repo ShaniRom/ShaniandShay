@@ -18,7 +18,7 @@ export const NameSchema = new mongoose.Schema({
   lastName: String,
 });
 
-export const userSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
   name: NameSchema,
   username: String,
   password: String,
@@ -27,28 +27,29 @@ export const userSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
-  type: {
-    type: String,
-    enum: UserTypeSchema,
-    default: UserTypeSchema.STUDENT,
-  },
-  created: { type: Date, default: Date.now },
-  image: String,
-  language: String,
-  country: String,
-  phone: String,
-  socialmedia:MediaSchema,
-  description:String,
-  mycourses:[String],
-  coursesioffer:[String]
+  // type: {
+  //   type: String,
+  //   enum: UserTypeSchema,
+  //   default: UserTypeSchema.STUDENT,
+  // },
+  // created: { type: Date, default: Date.now },
+  // image: String,
+  // language: String,
+  // country: String,
+  // phone: String,
+  // socialmedia:MediaSchema,
+  // description:String,
+  // mycourses:[String],
+  // coursesioffer:[String]
 
 
 
 
 });
 
-// const User = mongoose.model('users', userSchema);
-// export default User;
+
+const User = mongoose.model('users', UserSchema)
+export default User;
 //------------------------------------------------------------------------
 // var userSchema = mongoose.Schema({
 //     username: String,
