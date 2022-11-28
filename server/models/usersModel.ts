@@ -21,7 +21,7 @@ export const NameSchema = new mongoose.Schema({
 export const UserSchema = new mongoose.Schema({
   //  name: NameSchema,
   username: String,
-   password: String,
+  //  password: String,
   // email: {
   //   type: String,
   //   // unique: true,

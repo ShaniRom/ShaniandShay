@@ -7,13 +7,14 @@ const PracticeComponent = () => {
 
     try {
 
-        const password= ev.target.elements.password.value
+       
         const username= ev.target.elements.username.value
+        const password= ev.target.elements.password.value
         const email= ev.target.elements.email.value
-       console.log(password, username, email)
+       console.log( username,password, email)
 
        
-      const { data } = await axios.post("/users/addUser",{password, username,email});
+      const { data } = await axios.post("/users/addUser",{ username,password, email});
 
       if (!data) throw new Error("didnt get any user to add");
 
