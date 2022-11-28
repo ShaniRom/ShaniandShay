@@ -8,7 +8,8 @@ import {addUser} from '../controllers/usersCont'
 
 
 router
-.post('/addUser',validate(UserValidation), addUser)
+.post('/addUser',validate(UserValidation.addUserValidation), addUser)
+//.post('/addUser', addUser)
 
 
 export default router;

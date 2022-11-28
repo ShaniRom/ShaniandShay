@@ -19,14 +19,14 @@ export const NameSchema = new mongoose.Schema({
 });
 
 export const UserSchema = new mongoose.Schema({
-  name: NameSchema,
+  //  name: NameSchema,
   username: String,
-  password: String,
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-  },
+   password: String,
+  // email: {
+  //   type: String,
+  //   // unique: true,
+  //   required: true,
+  // },
   // type: {
   //   type: String,
   //   enum: UserTypeSchema,

@@ -3,13 +3,16 @@ import axios from "axios";
 
 const PracticeComponent = () => {
   async function handleRegister(ev:any) {
-    ev.preventDefault;
+    ev.preventDefault()
 
     try {
 
         const password= ev.target.elements.password.value
         const username= ev.target.elements.username.value
         const email= ev.target.elements.email.value
+       console.log(password, username, email)
+
+       
       const { data } = await axios.post("/users/addUser",{password, username,email});
 
       if (!data) throw new Error("didnt get any user to add");
