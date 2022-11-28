@@ -32,7 +32,8 @@ mongoose
 
 
 
-
+  import usersRoutes from './routes/usersRoute'
+  app.use('/users', usersRoutes)
 
 
 
