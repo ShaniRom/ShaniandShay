@@ -47,6 +47,7 @@
 //   },
 // };
 // export default UserValidation;
+//is a middleware so it cehcks if the validation of user is correct
 module.exports = (validator) => {
   return (req, res, next) => {
     const { error } = validator(req.body)

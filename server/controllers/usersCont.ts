@@ -4,9 +4,9 @@
  export  const addUser= async (req,res)=>{
     try{
      
-        const {password,username,email}=req.body;
+        const {password,username,email,typeOfUser}=req.body;
         
-        const newUser=new User({password,username,email});
+        const newUser=new User({password,username,email,typeOfUser});
         const result=await newUser.save();
        console.log(result)
       

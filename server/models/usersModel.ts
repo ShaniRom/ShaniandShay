@@ -19,7 +19,7 @@ export const NameSchema = new mongoose.Schema({
 });
 
 export const UserSchema = new mongoose.Schema({
-  //  name: NameSchema,
+   //name: NameSchema,
   username: String,
   password: {
     type: String,
@@ -32,11 +32,12 @@ export const UserSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
   },
-  // type: {
-  //   type: String,
-  //   enum: UserTypeSchema,
-  //   default: UserTypeSchema.STUDENT,
-  // },
+ // typeOfUser: Joi.string().default(UserTypeSchema.STUDENT).valid(...Object.values(UserTypeSchema)),
+  typeOfUser: {
+    type: String,
+    enum: UserTypeSchema,
+    default: UserTypeSchema.STUDENT,
+  },
   // created: { type: Date, default: Date.now },
   // image: String,
   // language: String,
@@ -55,6 +56,7 @@ const validateUser = (user) => {
     username: Joi.string().min(3),
     email: Joi.string().email().min(5).max(500).required(),
     password: Joi.string().min(8).max(1024).required(),
+    typeOfUser: Joi.string().default(UserTypeSchema.STUDENT).valid(...Object.values(UserTypeSchema)),
   });
   return schema.validate(user);
 };
