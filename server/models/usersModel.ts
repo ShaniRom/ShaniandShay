@@ -32,13 +32,12 @@ export const UserSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
   },
- // typeOfUser: Joi.string().default(UserTypeSchema.STUDENT).valid(...Object.values(UserTypeSchema)),
   typeOfUser: {
     type: String,
     enum: UserTypeSchema,
     default: UserTypeSchema.STUDENT,
   },
-  // created: { type: Date, default: Date.now },
+   created: { type: Date, default: Date.now },
   // image: String,
   // language: String,
   // country: String,
@@ -57,6 +56,7 @@ const validateUser = (user) => {
     email: Joi.string().email().min(5).max(500).required(),
     password: Joi.string().min(8).max(1024).required(),
     typeOfUser: Joi.string().default(UserTypeSchema.STUDENT).valid(...Object.values(UserTypeSchema)),
+    created: Joi.date().min('now').default(Date.now) 
   });
   return schema.validate(user);
 };
