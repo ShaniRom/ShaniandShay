@@ -15,7 +15,7 @@ const PracticeComponent = () => {
       const password = ev.target.elements.password.value;
       const email = ev.target.elements.email.value;
       const typeOfUser = ev.target.elements.typeOfUser.value;
-      console.log(username, password, email);
+      console.log(username, password, email,typeOfUser);
 
       const { data } = await axios.post("/users/addUser", {
         username,
@@ -44,6 +44,7 @@ const PracticeComponent = () => {
           <option value={UserTypeSchema.INSTRUCTOR}>instructor</option>
         
         </select>
+
         <button>submit</button>
       </form>
     </div>

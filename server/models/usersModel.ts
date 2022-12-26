@@ -37,7 +37,7 @@ export const UserSchema = new mongoose.Schema({
     enum: UserTypeSchema,
     default: UserTypeSchema.STUDENT,
   },
-   created: { type: Date, default: Date.now },
+  created: { type: Date, default: Date.now },
   // image: String,
   // language: String,
   // country: String,
@@ -62,5 +62,7 @@ const validateUser = (user) => {
 };
 export {
   User,
-  validateUser
+  validateUser,
+  
+ 
 };

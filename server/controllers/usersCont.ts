@@ -5,8 +5,14 @@
     try{
      
         const {password,username,email,typeOfUser}=req.body;
-        
-        const newUser=new User({password,username,email,typeOfUser});
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();   
+        let created= `${day}-${month}-${year}`;
+      
+        const newUser=new User({password,username,email,typeOfUser,created});
         const result=await newUser.save();
        console.log(result)
       
