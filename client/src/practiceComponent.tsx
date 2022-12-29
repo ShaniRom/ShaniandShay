@@ -36,7 +36,13 @@ const PracticeComponent = () => {
       const description = ev.target.elements.description.value;
       const birthYear = ev.target.elements.birthYear.value;
       const country = ev.target.elements.country.value;
-      const phoneNum=ev.target.elements.phoneNum.value
+      const phoneNum=ev.target.elements.phoneNum.value;
+      const language=ev.target.elements.language.value;
+      const facebookLink=ev.target.elements.facebookLink.value;
+      const twitterLink=ev.target.elements.twitterLink.value;
+      const linkedinLink=ev.target.elements.linkedinLink.value;
+      const youtubeLink=ev.target.elements.youtubeLink.value;
+      const otherLink=ev.target.elements.otherLink.value;
       console.log(
         username,
         password,
@@ -45,7 +51,12 @@ const PracticeComponent = () => {
         firstName,
         lastName,
         description,
-        birthYear,country,phoneNum
+        birthYear,country,phoneNum,language,
+        facebookLink,
+        twitterLink,
+        linkedinLink,
+        youtubeLink,
+        otherLink,
       );
       const date = new Date();
       let day = date.getDate();
@@ -64,7 +75,13 @@ const PracticeComponent = () => {
         description,
         birthYear,
         country,
-        phoneNum
+        phoneNum,
+        language,
+        facebookLink,
+        twitterLink,
+        linkedinLink,
+        youtubeLink,
+        otherLink,
       });
 
       if (!data) throw new Error("didnt get any user to add");
@@ -116,8 +133,18 @@ const PracticeComponent = () => {
                       })}
                     </select>
 
-        <input type='text' name='phoneNum' id='phoneNum'/>                  
-
+        <input type='text' name='phoneNum' id='phoneNum'/>  
+        <label htmlFor="language">language</label>
+          <select name="language" id="language">
+          <option value='hebrew'>עברית</option>
+          <option value='english'>English</option>
+        </select> 
+                    
+        <input type='link' placeholder='twitter' name='twitterLink'/>
+        <input type='link' placeholder='facebook' name='facebookLink'/>
+        <input type='link' placeholder='linkedin' name='linkedinLink'/>
+        <input type='link' placeholder='youtube' name='youtubeLink'/>
+        <input type='link' placeholder='other' name='otherLink'/>
         <button>submit</button>
       </form>
     </div>
