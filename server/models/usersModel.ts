@@ -13,10 +13,10 @@ export enum UserTypeSchema {
 //   youtube: String,
 //   other: String,
 // });
-// export const NameSchema = new mongoose.Schema({
-//   firstName: String,
-//   lastName: String,
-// });
+export const NameSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+});
 
 export const UserSchema = new mongoose.Schema({
   firstName: String,
