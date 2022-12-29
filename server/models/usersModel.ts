@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const Joi = require("joi");
+//const Joi = require("joi").extend(require("@joi/date"));
 
 export enum UserTypeSchema {
   STUDENT = "student",
@@ -19,7 +20,7 @@ export const NameSchema = new mongoose.Schema({
 });
 
 export const UserSchema = new mongoose.Schema({
-   //name: NameSchema,
+  //name: NameSchema,
   username: String,
   password: {
     type: String,
@@ -37,7 +38,8 @@ export const UserSchema = new mongoose.Schema({
     enum: UserTypeSchema,
     default: UserTypeSchema.STUDENT,
   },
-  created: { type: Date, default: Date.now },
+  joinedDate: String,
+  // created: { type: Date, default: Date.now },
   // image: String,
   // language: String,
   // country: String,
@@ -47,7 +49,7 @@ export const UserSchema = new mongoose.Schema({
   // mycourses:[String],
   // coursesioffer:[String]
 });
-
+console.log(Joi.date().greater('now'))
 const User = mongoose.model("users", UserSchema);
 
 const validateUser = (user) => {
@@ -56,13 +58,9 @@ const validateUser = (user) => {
     email: Joi.string().email().min(5).max(500).required(),
     password: Joi.string().min(8).max(1024).required(),
     typeOfUser: Joi.string().default(UserTypeSchema.STUDENT).valid(...Object.values(UserTypeSchema)),
-    created: Joi.date().min('now').default(Date.now) 
+    joinedDate: Joi.date(),
   });
   return schema.validate(user);
 };
-export {
-  User,
-  validateUser,
-  
- 
-};
+
+export { User, validateUser };

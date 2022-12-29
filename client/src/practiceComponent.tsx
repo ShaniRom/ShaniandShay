@@ -16,18 +16,30 @@ const PracticeComponent = () => {
       const email = ev.target.elements.email.value;
       const typeOfUser = ev.target.elements.typeOfUser.value;
       console.log(username, password, email,typeOfUser);
+      const date = new Date();
+
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();   
+      let joinedDate= `${month}-${day}-${year}`;
+      console.log(joinedDate)
 
       const { data } = await axios.post("/users/addUser", {
         username,
         password,
         email,
-        typeOfUser
+        typeOfUser,
+        joinedDate
+       
       });
 
       if (!data) throw new Error("didnt get any user to add");
 
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.error({error});
+     
+    }
   }
   return (
     <div>

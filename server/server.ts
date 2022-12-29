@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 const app = express();
-const port: number =  4001;
+const port: number = 4001;
 
 app.use(express.static('public/build'));
 app.use(express.json());

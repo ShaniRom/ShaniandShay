@@ -50,11 +50,16 @@
 //is a middleware so it cehcks if the validation of user is correct
 module.exports = (validator) => {
   return (req, res, next) => {
-    const { error } = validator(req.body)
-    console.error('error: ', error)
+
+    ///req.body is the new user added
+    console.log(req.body)
+    const { error } = validator(req.body)   
     if (error) {
-      return res.status(400).send(error.details[0].message)
+      console.error('error:', error)
+    //  return res.send({ error: 'problem in joi validation' });
+       return res.status(400).send(error.details[0].message)
     }
+    
     next()
   }
 }
