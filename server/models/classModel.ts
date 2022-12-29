@@ -11,6 +11,8 @@ export const StudentSchema = new mongoose.Schema({
 
 });
 
+
+
 export const ClassSchema = new mongoose.Schema({
   classname:String,
   instructor:NameSchema,
@@ -28,18 +30,31 @@ export const ClassSchema = new mongoose.Schema({
   reviews:[String]
 
 
+});
 
-//   username: String,
-//   password: {
-//     type: String,
-//     required: [true, "Please enter a password"],
-//     minlength: 8,
-//   },
-//   email: {
-//     type: String,
-//     required: [true, "Please enter a email"],
-//     unique: true,
-//     lowercase: true,
-//   },
+const Course = mongoose.model("classes", ClassSchema);
+const validateCourse = (course) => {
+  const schema = Joi.object({
+    classname:Joi.string().required(),
+    // instructor:NameSchema,
+    // instructorId:String,
+    // studentsEnrolled:[StudentSchema],
+    // lastUpdated:String,
+    // price:String,
+    rating:Joi.number().required(),
+    // classId:String,
+    language:Joi.string().required(),
+    subtitles:Joi.string().required(),
+    // classCoverImg:String,
+    numberOfLessons:Joi.number().required(),
+    description:Joi.string().required(),
+    // reviews:[String]
+
+ 
   });
-    const Course = mongoose.model("classes", ClassSchema);
+  return schema.validate(course);
+};
+
+    
+    
+    export { Course,validateCourse};
