@@ -1,21 +1,4 @@
-// const Joi = require("joi");
 
-// export enum UserTypeSchema {
-//   STUDENT = "student",
-//   INSTRUCTOR = "instructor",
-// }
-
-// export const MediaSchema = Joi.object({
-//   facebook: Joi.string(),
-//   twitter: Joi.string(),
-//   linkedin: Joi.string(),
-//   youtube: Joi.string(),
-//   other: Joi.string(),
-// });
-// export const NameSchema = Joi.object({
-//   firstName: Joi.string().required,
-//   lastName: Joi.string().required,
-// });
 
 // const UserValidation = {
 //   addUserValidation: {
@@ -47,6 +30,8 @@
 //   },
 // };
 // export default UserValidation;
+
+
 //is a middleware so it cehcks if the validation of user is correct
 module.exports = (validator) => {
   return (req, res, next) => {

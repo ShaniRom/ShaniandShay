@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const Joi = require("joi");
-//const Joi = require("joi").extend(require("@joi/date"));
+
 
 export enum UserTypeSchema {
   STUDENT = "student",
@@ -14,13 +14,14 @@ export const MediaSchema = new mongoose.Schema({
   youtube: String,
   other: String,
 });
-export const NameSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-});
+// export const NameSchema = new mongoose.Schema({
+//   firstName: String,
+//   lastName: String,
+// });
 
 export const UserSchema = new mongoose.Schema({
-  //name: NameSchema,
+  firstName: String,
+  lastName: String,  
   username: String,
   password: {
     type: String,
@@ -39,28 +40,51 @@ export const UserSchema = new mongoose.Schema({
     default: UserTypeSchema.STUDENT,
   },
   joinedDate: String,
-  // created: { type: Date, default: Date.now },
-  // image: String,
+  description:String,
+  birthYear:Number,
+  country:String,
+  phoneNum:String
   // language: String,
   // country: String,
   // phone: String,
   // socialmedia:MediaSchema,
-  // description:String,
+  // image: String,=== cloudinary
   // mycourses:[String],
-  // coursesioffer:[String]
+  // coursesUserMade:[String]
 });
-console.log(Joi.date().greater('now'))
+
 const User = mongoose.model("users", UserSchema);
 
+
 const validateUser = (user) => {
+
   const schema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
     username: Joi.string().min(3),
     email: Joi.string().email().min(5).max(500).required(),
     password: Joi.string().min(8).max(1024).required(),
     typeOfUser: Joi.string().default(UserTypeSchema.STUDENT).valid(...Object.values(UserTypeSchema)),
     joinedDate: Joi.date(),
+    description:Joi.string(),
+    birthYear:Joi.number()
+    .integer()
+    .min(1950)
+    .max(2023),
+    country: Joi.string(),
+  phoneNum:Joi.string().length(10).pattern(/^[0-9]+$/),
   });
   return schema.validate(user);
 };
 
 export { User, validateUser };
+
+//--nested schema try
+// const NameJoiSchema = Joi.object().keys({
+//  firstName: Joi.string(),
+//  lastName: Joi.string(),
+// }).required();
+//--- can use for enum kind that it can only be ios or andriod in the options
+// const schema = Joi.object({
+//   type: Joi.string().valid('android', 'ios').insensitive()
+// })
