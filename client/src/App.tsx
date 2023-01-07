@@ -3,13 +3,16 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 
-import PracticeComponent from './practiceComponent';
+import Register from './features/register/Register';
+import Login from './features/login/Login';
+
 
 function App() {
   return (
     <div className="App">
      
-      <PracticeComponent/>
+      <Register/>
+      <Login/>
       
     </div>
   );
